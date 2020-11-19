@@ -1,9 +1,26 @@
 package com.example.UnitTesting;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 public class AddNumbersTest {
+
+
+    @BeforeAll
+    static void setup(){
+        System.out.println("@BeforeAll executed");
+    }
+
+    @BeforeEach
+    void setupThis() {
+        System.out.println("@BeforeEach executed");
+
+    }
+
     @Test
     public void twoAndThreeIsFive() throws Exception {
         final long result = new AddNumbers().add(2, 3);
@@ -56,6 +73,17 @@ public class AddNumbersTest {
     public void threeXMinusThreeIsMinusNine() throws Exception {
         final long result = new  AddNumbers().multiply(3, -3);
         assertThat(result, is(-9L));
+    }
+
+
+    @AfterAll
+    public static void cleanUp(){
+        System.out.println("After All cleanUp() method called");
+    }
+
+    @AfterEach
+    public void cleanUpEach(){
+        System.out.println("After Each cleanUpEach() method called");
     }
 
 }
